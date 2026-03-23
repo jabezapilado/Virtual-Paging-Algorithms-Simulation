@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Replacement Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="sim-card">
+      <div class="header">
+        <p class="eyebrow">Operating Systems Project</p>
+        <h1>Page Replacement Simulator</h1>
+        <p class="subtitle">
+          Simulate FIFO, LRU, MRU, Optimal, and Second Chance page replacement algorithms.
+        </p>
+      </div>
+
+      <form id="sim-form" class="sim-form">
+        <div class="form-grid">
+          <div class="field full">
+            <label for="algorithm">Algorithm</label>
+            <select id="algorithm" required>
+              <option value="FIFO">FIFO</option>
+              <option value="LRU">LRU</option>
+              <option value="MRU">MRU</option>
+              <option value="OPTIMAL">OPTIMAL</option>
+              <option value="SECOND_CHANCE">SECOND CHANCE</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="frameCount">Number of Frames</label>
+            <input id="frameCount" type="number" min="1" max="20" required />
+          </div>
+
+          <div class="field full">
+            <label for="referenceString">Reference String</label>
+            <input
+              id="referenceString"
+              type="text"
+              placeholder="Example: 7 0 1 2 0 3 0 4 2 3 0 3 2"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="submit" class="btn btn-primary">Run</button>
+          <button type="button" id="clearBtn" class="btn btn-secondary">Clear</button>
+          <button type="button" id="exitBtn" class="btn btn-ghost">Exit</button>
+        </div>
+      </form>
+
+      <p id="error" class="error" role="alert" aria-live="polite"></p>
+
+      <section class="summary">
+        <div class="summary-item">
+          <span class="summary-label">Page Faults</span>
+          <span id="faults" class="summary-value">-</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Page Hits</span>
+          <span id="hits" class="summary-value">-</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Failure Rate</span>
+          <span id="failureRate" class="summary-value">-</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Success Rate</span>
+          <span id="successRate" class="summary-value">-</span>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-header">
+          <h2>Simulation Output</h2>
+          <p>Output format follows the required structure.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="output-table">
+            <thead>
+              <tr>
+                <th>Page</th>
+                <th>Frames</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody id="stepsBody">
+              <tr>
+                <td colspan="3" class="placeholder">No simulation yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
