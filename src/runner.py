@@ -1,5 +1,5 @@
 from src.algorithms import get_algorithm_map
-from src.cli import (
+from src.ui.cli import (
     prompt_algorithm_choice,
     prompt_frames,
     prompt_reference_string,
@@ -15,7 +15,7 @@ def run_app() -> None:
     while True:
         choice = prompt_algorithm_choice()
         if choice == "0":
-            print("Exiting simulation. Goodbye.")
+            print("Exiting simulation.")
             return
 
         algorithm_map = get_algorithm_map()
@@ -35,5 +35,5 @@ def run_app() -> None:
             print_not_implemented(algorithm_name, error)
 
         if not prompt_run_again():
-            print("Exiting simulation. Goodbye.")
+            print("Exiting simulation.")
             return
