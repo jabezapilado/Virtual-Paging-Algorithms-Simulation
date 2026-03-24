@@ -108,13 +108,10 @@ Virtual Paging Algorithms Simulation/
 - **Backend (3):** Jabez, Nikko, Dane
 - **Frontend (2):** Francoise, Grant
 
-Detailed task delegation is documented in the workspace root at `TEAM_TASK_DELEGATION.md`.
-
 ## Notes
 
 - All required algorithms run in one integrated program.
 - Output includes both step-by-step traces and summary metrics.
-- For sample test sets, see `examples/sample_inputs.md` in the workspace root.
 
 ## References
 
