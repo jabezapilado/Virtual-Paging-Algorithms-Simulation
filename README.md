@@ -71,25 +71,28 @@ The UI supports:
 
 ```text
 Virtual Paging Algorithms Simulation/
-├── main.py
-├── requirements.txt
-├── README.md
+├── main.py                            # Python entry point
+├── requirements.txt                   # Python dependencies (currently none required)
+├── README.md                          # Project documentation
 └── src/
-   ├── algorithms.py
-   ├── contracts.py
-   ├── fifo.py
-   ├── lru.py
-   ├── metrics.py
-   ├── mru.py
-   ├── optimal.py
-   ├── runner.py
-   ├── second_chance.py
+   ├── algorithms.py                   # Algorithm registry/selector
+   ├── contracts.py                    # Shared dataclasses/contracts
+   ├── fifo.py                         # FIFO implementation
+   ├── lru.py                          # LRU implementation
+   ├── metrics.py                      # Fault/hit/rate calculations
+   ├── mru.py                          # MRU implementation
+   ├── optimal.py                      # OPTIMAL implementation
+   ├── runner.py                       # App orchestration flow
+   ├── second_chance.py                # SECOND CHANCE implementation
    └── ui/
-      ├── cli.py
-      └── page-replacement-ui/
-         ├── server.js
-         ├── python_bridge.py
+      ├── cli.py                       # Console input/output UI
+      └── page-replacement-ui/         # Web UI (Express + static frontend)
+         ├── server.js                 # Node/Express server
+         ├── python_bridge.py          # Bridge from Node to Python simulator
          └── public/
+            ├── index.html             # Web UI markup
+            ├── app.js                 # Web UI logic
+            └── styles.css             # Web UI styles
 ```
 
 ## Contributors
