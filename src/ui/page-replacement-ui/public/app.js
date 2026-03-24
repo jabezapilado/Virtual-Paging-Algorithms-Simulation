@@ -13,8 +13,8 @@ const successRateEl = document.getElementById("successRate");
 // Auto-format reference string with spaces
 referenceStringInput.addEventListener("input", (e) => {
   const value = e.target.value;
-  const cleaned = value.replace(/\s+/g, "").replace(/[^\d]/g, "");
-  const formatted = cleaned.split("").join(" ");
+  const tokens = value.match(/\d+/g) ?? [];
+  const formatted = tokens.join(" ");
   e.target.value = formatted;
 });
 

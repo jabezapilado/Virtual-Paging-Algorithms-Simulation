@@ -54,11 +54,19 @@ function runPythonSimulation(payload) {
 function handleSimulate(req, res) {
   const { algorithm, frames, referenceString } = req.body || {};
 
-  if (!algorithm || !frames || !referenceString) {
+  const normalizedAlgorithm = typeof algorithm === "string" ? algorithm.trim() : "";
+  const parsedFrames = Number(frames);
+  const hasReferenceString = Array.isArray(referenceString) && referenceString.length > 0;
+
+  if (!normalizedAlgorithm || !Number.isInteger(parsedFrames) || parsedFrames <= 0 || !hasReferenceString) {
     return res.status(400).json({ error: "Missing required fields." });
   }
 
-  const result = runPythonSimulation({ algorithm, frames, referenceString });
+  const result = runPythonSimulation({
+    algorithm: normalizedAlgorithm,
+    frames: parsedFrames,
+    referenceString,
+  });
   return res.status(result.status).json(result.body);
 }
 
