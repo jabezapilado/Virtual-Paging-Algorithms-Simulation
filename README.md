@@ -94,11 +94,11 @@ Virtual Paging Algorithms Simulation/
 
 ## Contributors
 
-- Apilado, Jabez Timothy E. — Backend lead, integration, contracts, metrics, CLI orchestration
+- Apilado, Jabez Timothy E. — Backend lead, integration, contracts, metrics, CLI implementation
 - Maninang, Allein Dane G. — OPTIMAL and SECOND CHANCE algorithms
 - Parungao, Nikko S. — FIFO and MRU algorithms
 - Gurango, Christine Francoise O. — Frontend/input UX support
-- Quilantang, Grant Mihkael D. — Frontend/output UX and documentation support
+- Quilantang, Grant Mihkael D. — Frontend/output UX 
 
 ## Team Grouping and Roles
 
