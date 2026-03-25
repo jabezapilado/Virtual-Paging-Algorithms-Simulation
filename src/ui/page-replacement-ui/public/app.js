@@ -13,7 +13,10 @@ const successRateEl = document.getElementById("successRate");
 // Auto-format reference string with spaces
 referenceStringInput.addEventListener("input", (e) => {
   const value = e.target.value;
-  const tokens = value.match(/\d+/g) ?? [];
+  const tokens = value
+    .split(/[\s,]+/)
+    .map((token) => token.trim())
+    .filter((token) => token.length > 0);
   const formatted = tokens.join(" ");
   e.target.value = formatted;
 });
@@ -37,12 +40,12 @@ simForm.addEventListener("submit", async (e) => {
   }
 
   const referenceString = referenceInput
-    .split(/\s+/)
-    .map((item) => Number(item))
-    .filter((num) => !Number.isNaN(num));
+    .split(/[\s,]+/)
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
 
   if (referenceString.length === 0) {
-    errorEl.textContent = "Reference string must contain valid numbers.";
+    errorEl.textContent = "Reference string must contain at least one page token.";
     return;
   }
 

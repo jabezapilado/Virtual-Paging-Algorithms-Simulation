@@ -4,7 +4,7 @@ import sys
 from typing import Callable
 
 
-def _load_algorithms() -> dict[str, Callable[[int, list[int]], object]]:
+def _load_algorithms() -> dict[str, Callable[[int, list[str]], object]]:
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
     if repo_root not in sys.path:
         sys.path.insert(0, repo_root)
@@ -25,14 +25,17 @@ def _load_algorithms() -> dict[str, Callable[[int, list[int]], object]]:
     }
 
 
-def _to_int_list(values: list[object]) -> list[int]:
-    parsed: list[int] = []
+def _to_page_list(values: list[object]) -> list[str]:
+    parsed: list[str] = []
     for value in values:
-        parsed.append(int(value))
+        token = str(value).strip()
+        if not token:
+            raise ValueError("Reference string contains an empty page token.")
+        parsed.append(token)
     return parsed
 
 
-def _serialize_frames(frames_after: list[int | None]) -> str:
+def _serialize_frames(frames_after: list[str | None]) -> str:
     return "[" + " ".join("-" if item is None else str(item) for item in frames_after) + "]"
 
 
@@ -53,7 +56,7 @@ def run() -> None:
     if not isinstance(reference_raw, list) or len(reference_raw) == 0:
         raise ValueError("Reference string is required.")
 
-    reference_string = _to_int_list(reference_raw)
+    reference_string = _to_page_list(reference_raw)
 
     algorithm_map = _load_algorithms()
     simulation_fn = algorithm_map.get(algorithm)

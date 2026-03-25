@@ -2,11 +2,11 @@ from src.contracts import SimulationResult, SimulationStep
 from src.metrics import compute_metrics
 
 
-def optimal(frames: int, reference_string: list[int]) -> SimulationResult:
+def optimal(frames: int, reference_string: list[str]) -> SimulationResult:
     if frames <= 0:
         raise ValueError("Number of frames must be greater than 0.")
 
-    frame_slots: list[int | None] = [None] * frames
+    frame_slots: list[str | None] = [None] * frames
     faults = 0
     steps: list[SimulationStep] = []
 

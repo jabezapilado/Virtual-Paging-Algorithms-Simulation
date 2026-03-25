@@ -2,11 +2,11 @@ from src.contracts import SimulationResult, SimulationStep
 from src.metrics import compute_metrics
 
 
-def fifo(frames: int, reference_string: list[int]) -> SimulationResult:
+def fifo(frames: int, reference_string: list[str]) -> SimulationResult:
     if frames <= 0:
         raise ValueError("Number of frames must be greater than 0.")
 
-    frame_slots: list[int | None] = [None] * frames
+    frame_slots: list[str | None] = [None] * frames
     queue_index = 0
     faults = 0
     steps: list[SimulationStep] = []

@@ -5,8 +5,8 @@ from typing import List
 @dataclass
 class SimulationStep:
     index: int
-    requested_page: int
-    frames_after: List[int | None]
+    requested_page: str
+    frames_after: List[str | None]
     is_fault: bool
 
 
@@ -15,7 +15,7 @@ class SimulationResult:
     algorithm_name: str
     number_of_pages: int
     number_of_frames: int
-    reference_string: List[int]
+    reference_string: List[str]
     steps: List[SimulationStep]
     page_interrupts: int
     faults: int

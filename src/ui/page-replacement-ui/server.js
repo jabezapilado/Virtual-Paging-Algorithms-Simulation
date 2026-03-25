@@ -6,11 +6,20 @@ const app = express();
 const PORT = 3000;
 const PYTHON_BRIDGE_PATH = path.join(__dirname, "python_bridge.py");
 
+function getPythonCommand() {
+  if (process.platform === "win32") {
+    return { command: "py", args: ["-3"] };
+  }
+
+  return { command: "python3", args: [] };
+}
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 function runPythonSimulation(payload) {
-  const processResult = spawnSync("python3", [PYTHON_BRIDGE_PATH], {
+  const python = getPythonCommand();
+  const processResult = spawnSync(python.command, [...python.args, PYTHON_BRIDGE_PATH], {
     input: JSON.stringify(payload),
     encoding: "utf8",
   });

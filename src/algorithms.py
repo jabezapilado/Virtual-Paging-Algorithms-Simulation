@@ -8,7 +8,7 @@ from src.optimal import optimal
 from src.second_chance import second_chance
 
 
-def get_algorithm_map() -> dict[str, tuple[str, Callable[[int, list[int]], SimulationResult]]]:
+def get_algorithm_map() -> dict[str, tuple[str, Callable[[int, list[str]], SimulationResult]]]:
     return {
         "1": ("FIFO", fifo),
         "2": ("LRU", lru),

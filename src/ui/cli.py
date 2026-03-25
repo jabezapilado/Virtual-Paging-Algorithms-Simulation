@@ -1,15 +1,12 @@
 from src.contracts import SimulationResult
 
 
-def parse_reference_string(raw: str) -> list[int]:
+def parse_reference_string(raw: str) -> list[str]:
     parts = [part.strip() for part in raw.replace(",", " ").split() if part.strip()]
     if not parts:
         raise ValueError("Reference string cannot be empty.")
 
-    values = [int(part) for part in parts]
-    if any(value < 0 for value in values):
-        raise ValueError("Pages must be non-negative integers.")
-    return values
+    return parts
 
 
 def prompt_frames() -> int:
@@ -25,9 +22,9 @@ def prompt_frames() -> int:
             print("Invalid input. Enter a whole number.")
 
 
-def prompt_reference_string() -> list[int]:
+def prompt_reference_string() -> list[str]:
     while True:
-        raw = input("Enter page reference string (e.g., 7 0 1 2 0 3 0 4): ").strip()
+        raw = input("Enter page reference string (e.g., 7 0 1 2 or A B C D): ").strip()
         try:
             return parse_reference_string(raw)
         except ValueError as error:
@@ -36,11 +33,11 @@ def prompt_reference_string() -> list[int]:
 
 def prompt_algorithm_choice() -> str:
     print("\nChoose an algorithm")
-    print("1) FIFO")
-    print("2) LRU")
-    print("3) MRU")
-    print("4) OPTIMAL")
-    print("5) SECOND CHANCE")
+    print("1) First-In, First-Out (FIFO)")
+    print("2) Least Recently Used (LRU)")
+    print("3) Most Recently Used (MRU)")
+    print("4) Optimal Page Replacement (OPTIMAL)")
+    print("5) Second Chance (Clock) (SECOND CHANCE)")
     print("0) Exit")
     return input("Choice: ").strip()
 
@@ -55,7 +52,7 @@ def prompt_run_again() -> bool:
         print("Please answer y or n.")
 
 
-def format_frames(frames: list[int | None]) -> str:
+def format_frames(frames: list[str | None]) -> str:
     return "[" + " ".join("-" if value is None else str(value) for value in frames) + "]"
 
 
